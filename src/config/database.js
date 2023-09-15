@@ -7,8 +7,7 @@ export const sequelize = new Sequelize(
   environments.DB.DB_PASS,
   {
     dialect: environments.DB.DB_DIALECT,
-    host: environments.DB.DB_HOST,
-    port: environments.DB.DB_PORT
+    storage: environments.DB.DB_SQLITE_PATH
   }
 )
 
