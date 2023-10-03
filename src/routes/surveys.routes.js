@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { indexView } from "../controllers/survey.controllers.js";
+import { index, indexView } from "../controllers/survey.controllers.js";
 
 const router = Router();
 
@@ -9,6 +9,7 @@ router.get('/surveys', indexView);
 
 
 //api
+router.get('/api/surveys', index);
 
 
 

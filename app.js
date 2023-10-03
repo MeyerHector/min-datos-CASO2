@@ -13,6 +13,7 @@ import dashboardRoutes from "./src/routes/dashboard.routes.js";
 
 import fileDirName from './src/utils/file-dir-name.js';
 const { __dirname } = fileDirName(import.meta);
+console.log(__dirname);
 
 const app = express();
 
@@ -20,17 +21,16 @@ const app = express();
 //configuración del ejs
 app.set("views", path.join(__dirname, "src/views"));
 app.set('view engine', 'ejs');
+//Carpeta public para archivos estaticos
+app.use(express.static(path.join(__dirname, "src/public")));
 
-app.use(express.static('public'));
 
 //middlewares
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST']
-}))
+app.use(cors())
 app.use(morgan('dev'))
-app.use(helmet())
+// app.use(helmet())
 
 //routes
 
