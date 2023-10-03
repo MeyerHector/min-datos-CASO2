@@ -7,7 +7,8 @@ export const Locality = sequelize.define('Locality', {
         allowNull: false
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    underscored: true
 })
 
 // servicios

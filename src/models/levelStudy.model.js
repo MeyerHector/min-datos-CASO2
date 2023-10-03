@@ -7,7 +7,8 @@ export const LevelStudy = sequelize.define('LevelStudy', {
         allowNull: false
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    underscored: true
 })
 
 // servicios

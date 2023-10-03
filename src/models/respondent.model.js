@@ -27,7 +27,8 @@ export const Respondent = sequelize.define('Respondent', {
         allowNull: false
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    underscored: true
 })
 
 // servicio
@@ -40,5 +41,5 @@ export async function store(respondent) {
 }
 
 export async function show(respondentId) {
-    return await respondent.findByPk(respondentId) ?? null
+    return await Respondent.findByPk(respondentId) ?? null
 }

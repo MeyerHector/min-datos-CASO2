@@ -11,18 +11,19 @@ export const Survey = sequelize.define('Survey', {
         allowNull: false
     },
 }, {
-    timestamps: true
+    timestamps: true,
+    underscored: true
 })
 
 // servicios
-export async function index() {
+export async function indexSurveys() {
     return await Survey.findAll() ?? null
 }
 
-export async function store(survey) {
+export async function storeSurvey(survey) {
     return await Survey.create(survey)
 }
 
-export async function show(surveyId) {
+export async function showSurvey(surveyId) {
     return await Survey.findByPk(surveyId) ?? null
 }
