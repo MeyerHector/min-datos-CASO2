@@ -14,16 +14,21 @@ export const Respondent = sequelize.define('Respondent', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    gender: {
-        type: DataTypes.ENUM(GENDER.MASCULINO, GENDER.FENEMINO, GENDER.NO_BINARIO, GENDER.OTRO),
+    genderId: {
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    locality: {
-        type: DataTypes.STRING,
-        defaultValue: 'Formosa'
+    localityId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    levelStudyId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    underscored: true
 })
 
 // servicio
@@ -36,5 +41,5 @@ export async function store(respondent) {
 }
 
 export async function show(respondentId) {
-    return await respondent.findByPk(respondentId) ?? null
+    return await Respondent.findByPk(respondentId) ?? null
 }

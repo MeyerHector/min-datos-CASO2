@@ -2,6 +2,9 @@ import { Survey } from "./survey.model.js";
 import { Question } from "./question.model.js";
 import { Option } from "./option.model.js";
 import { Respondent } from "./respondent.model.js";
+import { Gender } from "./gender.model.js";
+import { Locality } from "./locality.model.js";
+import { LevelStudy } from "./levelStudy.model.js";
 
 
 
@@ -25,3 +28,23 @@ Option.belongsToMany(Respondent, {
 Respondent.belongsToMany(Option, {
   through: 'option_respondent'
 });
+
+Gender.hasMany(Respondent);
+Respondent.belongsTo(Gender, {
+  foreignKey: {
+    name: "genderId",
+  },
+})
+
+Locality.hasMany(Respondent);
+Respondent.belongsTo(Locality, {
+  foreignKey: {
+    name: "localityId",
+  },
+})
+LevelStudy.hasMany(Respondent);
+Respondent.belongsTo(LevelStudy, {
+  foreignKey: {
+    name: "levelStudyId",
+  },
+})
