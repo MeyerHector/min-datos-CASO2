@@ -14,7 +14,7 @@ export const Survey = sequelize.define('Survey', {
     timestamps: true
 })
 
-// servicio
+// servicios
 export async function index() {
     return await Survey.findAll() ?? null
 }
