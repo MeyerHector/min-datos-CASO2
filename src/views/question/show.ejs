@@ -1,17 +1,17 @@
 <%- include('../partials/head.ejs') ;%>
-    <div class="container-fluid py-5 px-md-5 col" id="id" data-id="<%= surveyId  %>">
-        <button type="button" class="btn btn-outline-success my-2" onclick=createQuestion(event)>
-            Nueva Pregunta
+    <div class="container-fluid py-5 px-md-5 col" id="id" data-id="<%= questionId  %>">
+        <button type="button" class="btn btn-outline-success my-2" onclick=createOption(event)>
+            Nueva Opción
         </button>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Pregunta</th>
+                    <th scope="col">Opciones</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
-            <tbody id="listQuestions">
+            <tbody id="listOptions">
                 <tr>
 
                 </tr>
@@ -19,21 +19,21 @@
         </table>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="modalQuestionCreate" tabindex="-1" aria-labelledby="modalQuestionCreateLabel"
+    <div class="modal fade" id="modalOptionCreate" tabindex="-1" aria-labelledby="modalOptionCreateLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form id="createEditQuestionForm" class="modal-content"  data-id="<%= surveyId  %>">
+            <form id="createEditOptionForm" class="modal-content"  data-id="<%= questionId  %>">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalQuestionCreateLabel">Nueva Pregunta</h1>
+                    <h1 class="modal-title fs-5" id="modalOptionCreateLabel">Nueva Opción</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row g-3 needs-validation">
                         <input type="hidden" id="isCreating">
                         <div class="col">
-                            <label for="question" class="form-label">Pregunta<small
+                            <label for="option" class="form-label">Opción<small
                                     class=" text-danger">(*)</small></label>
-                            <input type="text" class="form-control" id="question" name="question" required>
+                            <input type="text" class="form-control" id="option" name="option" required>
                         </div>
                     </div>
                 </div>
@@ -47,6 +47,6 @@
     </main>
     <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 
-    <script src="/js/surveys/showSurveyQuestions.js"></script>
-    <script src="/js/questions/modalEditCreate.js"></script>
+    <script src="/js/questions/showQuestionOptions.js"></script>
+    <script src="/js/options/modalEditCreate.js"></script>
     <%- include('../partials/footer.ejs') ;%>

@@ -16,8 +16,8 @@ export const Survey = sequelize.define('Survey', {
 })
 
 // servicios
-export async function indexSurveys() {
-    return await Survey.findAll() ?? null
+export async function indexSurveys(options) {
+    return await Survey.findAll(options) ?? null
 }
 
 export async function storeSurvey(survey) {

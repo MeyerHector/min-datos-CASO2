@@ -1,17 +1,23 @@
 import { Router } from "express";
-import { index, indexView } from "../controllers/survey.controllers.js";
+import { destroy, edit, editView, index, indexView, showView, showQuestions, store, storeQuestion } from "../controllers/survey.controllers.js";
+
 
 const router = Router();
 
 
 //vistas
 router.get('/surveys', indexView);
+router.get('/surveys/:surveyId/show', showView);
+router.get('/surveys/:surveyId/edit', editView);
 
 
 //api
 router.get('/api/surveys', index);
-
-
+router.post('/api/surveys', store);
+router.get('/api/surveys/:surveyId/questions', showQuestions);
+router.post('/api/surveys/:surveyId/questions', storeQuestion);
+router.put('/api/surveys/:surveyId/edit', edit);
+router.delete('/api/surveys/:surveyId/destroy', destroy);
 
 
 export default router;

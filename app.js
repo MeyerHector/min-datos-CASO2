@@ -7,13 +7,13 @@ import path from 'path';
 import { environments } from "./src/config/environments.js";
 import { startDb } from "./src/config/database.js";
 import './src/models/associations.js';
-import surveyRoutes from "./src/routes/surveys.routes.js";
 
+import surveyRoutes from "./src/routes/surveys.routes.js";
+import questionRoutes from "./src/routes/question.routes.js";
 import dashboardRoutes from "./src/routes/dashboard.routes.js";
 
 import fileDirName from './src/utils/file-dir-name.js';
 const { __dirname } = fileDirName(import.meta);
-console.log(__dirname);
 
 const app = express();
 
@@ -36,6 +36,7 @@ app.use(morgan('dev'))
 
 app.use('/',dashboardRoutes);
 app.use('/',surveyRoutes);
+app.use('/',questionRoutes);
 
 
 app.use(function (req, res) {

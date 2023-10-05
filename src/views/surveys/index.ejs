@@ -1,53 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/head.ejs', {title : 'Listado de usuarios' }) ;%>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Listado de Encuestas</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  
-    <link rel="stylesheet" href="/css/form.css">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Título</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="listSurveys">
+      <tr>
 
-</head>
+      </tr>
 
-<body>
-  <header class="p-3 text-bg-dark">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <img
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHhElEQVR4nO2bT2zbVBzHPQ0hBAfEgQkGTHAGceGEAAkhxIE/NzbuHLr8QZoQaAUBgtIKKrUrdO1aWpaFeiVt/u3/SrutHRKCC2xsWtekSRMnbB1jMKSsbezndfui58XB9nuxvaVLuqo/6XNY+svz933svDi2JwirtVqrVcuKx+ProtFoSywW+z0Wi82XOBmNRpvp34SVXNFodGM4HL4SiUTAo/S3N4WVWMPDwxtDodD1oaEh2EF7QqHQypIgiuK6wcHBK4ODg3BJIRKJPCislBJFsUUURegMDAwQURS3hkKh9RRRFBtLr5V7RFH8XFgpFQwGTwWDQejs2rWr0dpDX7P0nBRWSgUCgblAIACdvr6+h609wWDwIWNPIBC4Iiznwh7/64j5xhH3zSPuh5H+/n5bdu7cud46Xm9v7yNO77NuB3H/3I0M3tdqO/m4r4UTpkxvb68tPT09zEegp6fnA6f32W0TcX9zbSYfpXveDzu6u7udIF1dXY1dXV3rSzTS15ze57TdP8+dQZZAQ1KBnArkS0gEi1kVk1mCTdUJiPgnEPXDjs7OztuC03aLxzuRKQmwSsiVyBJcr0oCIv45RPywo6Oj47bgtN1re97DDIGtBPpvScXpWxcQ9oHhlz7gnzRQOKfR1tZ2W9DHx+U08PM3bI6wTxNglFCasElClkBmJpa9ilfyBD/nCBZ0U9nSQPqgaQLuRrVAerjCOXR3daK1tXVJ2dG93bQNXE5xs9CMPAmW9eBX0+QzCt6gi4TxMNEnrwugA6eogGEfS+EPE+Mje9HS0rKkTPywj9kOLwvNqEvIcCTkCBalq3jVJEBS8ZtxobDufX3ymoAhH4sl2OK/ORw7vAcd29rQ1NRUFXQMOhYdkxHAyaLnNEoorQcLEsFP+at4mTn8cwSEt/eNhz4ddFoBEPKxWIPVCk4WmlGToGAoTfAkgLWOC1tOxRmnvU8HTlYUkK8PnCw0Y1LGEIA1rlf2PMFbEsF1u0O/LOB7H0u9BHCy0Ix0z7uevF55gk2SijNZBVcr7f0EFTDoY6mXAE4WmnESuFuotk4B902reGGa4PidJiCh4hlhqQrA2oSCY3TgKSpgt4+lkKsPnCw0Y0LGQVeLn9uaKuJZKuAsFSB6WeolgJOFZqRZkwqOJIt4fha4V6i2JOAeavasfAcIkG8cqdq3gXJj/SqdF8ymCVpvaX1IEjxNB52kAga8LAXJxCXpFH48egijh/Zq/HjkEP7OnWb6qoaThWbUPgasAP3EqPWmJg9gTULG4bO6gO+8LJZgE6MHMHIgbmJi7IBZUvYUJsYOMn086HiXJI5AThaa8ayNgBmCWbcTXztF8FRCxoj2+ZeBMy4FHN4f42LsGR/dX7GPB+13I4BmpFlvScD0Ah5JExxKKSgav/+njAKCXhZLsIN7I1yMPUdH9lbs43FsZB8rgJNFFzBV+SPwZUUBMwRHZjgnP/rnXxOwy8tSyJoYOxjDvljIBH3N2HMxc5Lbx4P2/ZU9yWyHl4VmrLAOOC+CMwqupJ0EBLwslmAXZ05gZF8Y8fBujZH9YVzMnGAnUC2cLGUBMg6nFvCocDOVJji6FAJqho2AySI2CDdbmSI2pAnGphUoFQXs9LLUSwAniy7g9M3ufWMdB+5KFvFcUkGaEfCtl6WQqQ+cLIY14IekjCeEaipZxPN3sADmq1D7GlSwmFVc3h+QgHuYr8F+L0u9BHCyuPga1C+RXaeXAGwFJGS8qK8DZQF9XpbCjIlrqQko8SbIg1s1lFgTrqWPM31Vw8nidCJkuUh6uvIaIOOlaQV/lgXop8J9HhZLMDnyKYri+ybk6GemnsXUOOQo28eDjreYmuAIYLM4nQqbBBDI2ilvVsUnGYKc3ZWg8o+hbzwslmALwXe5GHuKw59U7ONB+xkBnCwufgz9f8OE4FdBImh2uhBqXAfQ62GxCghs4WISEPqoYh8P2s8I4GSx+TlsXQNu3B/IE1xwczW4fEGEKyBtYmH3B5jvf8fEwu4PTT2LyaPcPh70vbTfuh2uAIe9n1Es9wdyKmbdCtAuifV4WCzBFhNHMP/dVsz1+jTmBxr5E6gWThbj4Z+UoaQUbMkDD1Rc6fMErZUEcK8K7/CwLPXE3MLJYtr7CrY4ftdPAnfnCL6UVJx3cxTwBaTqg4MA2z3vtpIynpgmGC3fGOn2sNRLACeL8bO/JAJopYt4rCygy8NSLwGcLEYBKRUeYSkqIePx8s3RZS7AtPIrmMsQvJ0B7r/lyWeK2JAiGC3fHt/uYSlM1wdOloq3x1Wcp2ud42VxWM4MmQckOj0s9RLAyeLiAYkvbAXkCZptH5FZ5gKcHpHJqTjnJOCC4WkqRgK+9rBcphcsk7Xl8gluFqeHpCSCC7YCJBWz1qdFjBLw1WaWsW21lUAnP9rOzeL4mByB/VPoUunMsJKEazu28CUsA2g2m8nncio+drxrPFk6M8ypOM+TUAx3AB2blyfbGsaF211oa3gN2+jGliFtDbV5ahztm5vrPlkr7Ztr87S46UhobxhHW8Mc2rUAtUfbtpahtv9fYLVWa7VWS1gh9R+cj1o0cwxoXgAAAABJRU5ErkJggg==">
-        </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Encuestas</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-  <main class="m-4">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Título</th>
-          <th scope="col">Descripción</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="listSurveys">
-        <tr>
-
-        </tr>
-
-      </tbody>
-    </table>
+    </tbody>
+  </table>
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  
-  <script src="/js/surveys/index.js"></script>
-</body>
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 
-</html>
+  <script src="/js/surveys/index.js"></script>
+
+  <%- include('../partials/footer.ejs', {title : 'Listado de usuarios' }) ;%>
