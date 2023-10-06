@@ -1,13 +1,16 @@
-import { indexQuestions } from "../models/question.model.js";
-import { indexSurveys } from "../models/survey.model.js";
+import { indexQuestions, storeQuestion } from "../models/question.model.js";
+import { indexSurveys, showSurvey, storeSurvey, updateSurvey } from "../models/survey.model.js";
 
 export const indexView = (req, res) => {
   res.render("surveys/index");
 };
 
-export const showView = (req, res) => {
+export const showView = async (req, res) => {
   const surveyId = req.params.surveyId;
-  res.render("surveys/show", { surveyId });
+
+  const survey = await showSurvey(surveyId);
+
+  res.render("surveys/show", { surveyId, survey });
 };
 
 export const createView = (_req, res) => {
@@ -59,12 +62,12 @@ export const showQuestions = async (req, res) => {
 
 };
 
-export const storeQuestion = async (req, res) => {
-  console.log(req.body, req.params.surveyId);
-
-  const { question } = req.body;
+export const storeQuestions = async (req, res) => {
+  console.log(req.body, req.params);
 
   const surveyId = req.params.surveyId;
+  const { question } = req.body;
+
 
   try {
     const newQuestion = await storeQuestion({
@@ -83,14 +86,54 @@ export const storeQuestion = async (req, res) => {
       .status(201)
       .json({ question: newQuestion, message: "Pregunta creada correctamente." });
   } catch (error) {
+    console.log(error);
     return res
       .status(error.status || 500)
       .json(error.message || "Error interno del servidor");
   }
 };
 
-export const store = async (req, res) => {};
+export const store = async (req, res) => {
 
-export const edit = async (req, res) => {};
+  const { title, description } = req.body;
+
+  try {
+    const newSurvey = await storeSurvey({
+      title,
+      description,
+    });
+
+    if (!newSurvey) {
+      throw {
+        status: 400,
+        message: "No se pudo crear la encuesta.",
+      };
+    }
+
+    return res
+      .status(201)
+      .json({ survey: newSurvey, message: "Encuesta creada correctamente." });
+  } catch (error) {
+    return res
+      .status(error.status || 500)
+      .json(error.message || "Error interno del servidor");
+  }
+};
+
+export const edit = async (req, res) => {
+  
+  const { surveyId } = req.params;
+  const { title, description } = req.body;
+
+try {
+  const updatedSurvey = await updateSurvey(surveyId, { title, description });
+ 
+  return res.json({ survey: updatedSurvey, message: 'La encuesta se editó correctamente.' });
+} catch (error) {
+  return res
+    .status(error.status || 500)
+    .json(error.message || "Error interno del servidor");
+}
+};
 
 export const destroy = async (req, res) => {};

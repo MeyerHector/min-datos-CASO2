@@ -24,6 +24,11 @@ export async function storeSurvey(survey) {
     return await Survey.create(survey)
 }
 
+export async function updateSurvey(surveyId, data) {
+    const survey = await Survey.findByPk(surveyId)
+    return await survey.update(data);
+}
+
 export async function showSurvey(surveyId) {
     return await Survey.findByPk(surveyId) ?? null
 }

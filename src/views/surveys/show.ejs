@@ -1,5 +1,6 @@
 <%- include('../partials/head.ejs') ;%>
     <div class="container-fluid py-5 px-md-5 col" id="id" data-id="<%= surveyId  %>">
+        <h1><%= survey.title  %></h1>
         <button type="button" class="btn btn-outline-success my-2" onclick=createQuestion(event)>
             Nueva Pregunta
         </button>

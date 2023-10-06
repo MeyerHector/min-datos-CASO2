@@ -48,11 +48,12 @@ createEditQuestionForm.addEventListener("submit", async (e) => {
 
   const respToJson = await response.json();
 
-  console.log(respToJson);
   myModal.hide();
   createEditQuestionForm.reset();
 
-  if (!respToJson.question.id) {
+  if (!isCreating.value) {
+    const empty = document.querySelector(`#row-q-empty`);
+    empty != null ? listSurveys.removeChild(empty) : '';
     listQuestions.innerHTML += `
         <tr id="row-q-${respToJson.question.id}">
         <th scope="row">

@@ -1,5 +1,7 @@
 <%- include('../partials/head.ejs', {title : 'Listado de usuarios' }) ;%>
-
+  <button type="button" class="btn btn-outline-success my-2" onclick=createSurvey(event)>
+    Nueva Encuesta
+  </button>
   <table class="table table-striped table-sm">
     <thead>
       <tr>
@@ -16,9 +18,39 @@
 
     </tbody>
   </table>
+  <!-- Modal -->
+  <div class="modal fade" id="modalSurveyCreate" tabindex="-1" aria-labelledby="modalSurveyCreateLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form id="createEditSurveyForm" class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalSurveyCreateLabel">Nueva Opción</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="g-3 needs-validation">
+            <input type="hidden" id="isCreating">
+            <div class="col">
+              <label for="title" class="form-label">Nombre de la encuesta<small class=" text-danger">(*)</small></label>
+              <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="col">
+              <label for="title" class="form-label">Descripción de la Encuesta<small class=" text-danger">(*)</small></label>
+              <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
   </main>
   <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 
   <script src="/js/surveys/index.js"></script>
+  <script src="/js/surveys/modalEditCreate.js"></script>
 
   <%- include('../partials/footer.ejs', {title : 'Listado de usuarios' }) ;%>

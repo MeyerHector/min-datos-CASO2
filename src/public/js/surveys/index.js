@@ -23,20 +23,20 @@ const fetchSurveys = async () => {
 
 
 const showSurveys = (surveys) => {
-    if (surveys.length === 0) {
-      listSurveys.innerHTML = `
-          <tr>
-              <td colspan="6" class="text-center">No hay categorías registradas aún.</td>
+  if (surveys.length === 0) {
+    listSurveys.innerHTML = `
+          <tr id="row-q-empty">
+              <td colspan="6" class="text-center">No hay encuestas registradas aún.</td>
           </tr>
       `;
-      return;
-    }
-  
-    surveys.forEach((survey) => {
-      listSurveys.innerHTML += `
-                  <tr>
+    return;
+  }
+
+  surveys.forEach((survey, index) => {
+    listSurveys.innerHTML += `
+                  <tr id="row-q-${survey.id}">
                       <th scope="row">
-                        ${survey.id}
+                        ${index + 1}
                       </th>
                       <td>
                         ${survey.title}
@@ -45,10 +45,10 @@ const showSurveys = (surveys) => {
                         ${survey.description}
                       </td>
                       <td>
-                      <a href="/surveys/${survey.id}/edit" class="btn btn-outline-success">Editar</a>
-                      <a href="/surveys/${survey.id}/show" class="btn btn-outline-primary">Ver</a>
+                        <button onclick=editSurvey(event) class="btn btn-outline-success" data-id="${survey.id}" data-title="${survey.title}" data-description="${survey.description}">Editar</button>
+                        <a href="/surveys/${survey.id}/show" class="btn btn-outline-primary">Ver</a>
                       </td>
                    </tr>
               `;
-    });
-  };
+  });
+};

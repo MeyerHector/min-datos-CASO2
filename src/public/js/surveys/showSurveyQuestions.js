@@ -28,18 +28,18 @@ const showQuestions = (questions) => {
   console.log(questions)
   if (questions.length === 0) {
     listQuestions.innerHTML = `
-          <tr>
+          <tr id="row-q-empty">
               <td colspan="6" class="text-center">No hay preguntas registradas aún.</td>
           </tr>
       `;
     return;
   }
 
-  questions.forEach((question) => {
+  questions.forEach((question, index) => {
     listQuestions.innerHTML += `
                   <tr id="row-q-${question.id}">
                       <th scope="row">
-                        ${question.id}
+                        ${index + 1}
                       </th>
                       <td>
                         ${question.question}
