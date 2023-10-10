@@ -2,9 +2,10 @@ import { showQuestion } from "../models/question.model.js";
 
 //VISTAS
 
-export const showView = (req, res) => {
+export const showView = async (req, res) => {
   const questionId = req.params.questionId;
-  res.render("question/show", { questionId });
+  const q = await showQuestion(questionId);
+  res.render("question/show", { questionId, question: q.question });
 };
 
 

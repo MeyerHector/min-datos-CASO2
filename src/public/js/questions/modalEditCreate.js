@@ -7,14 +7,17 @@ const createEditQuestionForm = document.querySelector(
   "#createEditQuestionForm"
 );
 
+let isCreating;
+
 const createQuestion = async (event) => {
+  isCreating = 0;
   myModal.show();
 };
 
 const editQuestion = async (event) => {
   const { id, question, surveyId } = event.target.dataset;
   questionForm.value = question;
-  isCreating.value = id;
+  isCreating = id;
   myModal.show();
 };
 
@@ -26,15 +29,14 @@ createEditQuestionForm.addEventListener("submit", async (e) => {
   };
 
   let url, method;
-
-  if (!isCreating.value) {
+  if (!isCreating) {
     const surveyId = e.target.dataset.id;
     console.log("surveyId ON CREATE");
     console.log(surveyId);
     url = `http://localhost:8000/api/surveys/${surveyId}/questions`;
     method = "POST";
   } else {
-    url = `http://localhost:8000/api/questions/${isCreating.value}/update`;
+    url = `http://localhost:8000/api/questions/${isCreating}/update`;
     method = "PUT";
   }
 
@@ -51,7 +53,7 @@ createEditQuestionForm.addEventListener("submit", async (e) => {
   myModal.hide();
   createEditQuestionForm.reset();
 
-  if (!isCreating.value) {
+  if (!isCreating) {
     const empty = document.querySelector(`#row-q-empty`);
     empty != null ? listSurveys.removeChild(empty) : '';
     listQuestions.innerHTML += `

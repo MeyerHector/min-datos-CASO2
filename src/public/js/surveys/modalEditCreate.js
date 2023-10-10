@@ -1,60 +1,61 @@
 const myModal = new bootstrap.Modal(
-    document.querySelector("#modalSurveyCreate")
+  document.querySelector("#modalSurveyCreate")
 );
 
 const titleForm = document.querySelector("#title");
 const descriptionForm = document.querySelector("#description");
 const createEditSurveyForm = document.querySelector("#createEditSurveyForm");
-
+let isCreating;
 const createSurvey = async (event) => {
-    myModal.show();
+  isCreating = 0;
+  myModal.show();
 };
 
 const editSurvey = async (event) => {
-    const { id, title, description } = event.target.dataset;
-    titleForm.value = title;
-    descriptionForm.value = description;
-    isCreating.value = id;
-    myModal.show();
+  const { id, title, description } = event.target.dataset;
+  titleForm.value = title;
+  descriptionForm.value = description;
+  isCreating = id;
+  myModal.show();
 };
 
 createEditSurveyForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = {
-        title: titleForm.value,
-        description: descriptionForm.value,
-    };
+  const formData = {
+    title: titleForm.value,
+    description: descriptionForm.value,
+  };
 
-    let url, method;
+  let url, method;
 
-    if (!isCreating.value) {
-        url = `http://localhost:8000/api/surveys`;
-        method = "POST";
-    } else {
-        url = `http://localhost:8000/api/surveys/${isCreating.value}/update`;
-        method = "PUT";
-    }
+  if (!isCreating) {
+    url = `http://localhost:8000/api/surveys`;
+    method = "POST";
+  } else {
+    url = `http://localhost:8000/api/surveys/${isCreating}/update`;
+    method = "PUT";
+  }
 
-    const response = await fetch(url, {
-        method,
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-    });
+  const response = await fetch(url, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
 
-    const respToJson = await response.json();
+  const respToJson = await response.json();
 
-    console.log(respToJson);
-    myModal.hide();
-    createEditSurveyForm.reset();
+  console.log(respToJson);
+  myModal.hide();
+  createEditSurveyForm.reset();
 
-    if (!isCreating.value) {
-      const empty = document.querySelector(`#row-q-empty`);
-      console.log(empty)
-      empty != null ? listSurveys.removeChild(empty) : '';
-        listSurveys.innerHTML += `
+  if (!isCreating) {
+    const empty = document.querySelector(`#row-q-empty`);
+    console.log(empty);
+    empty != null ? listSurveys.removeChild(empty) : "";
+    listSurveys.innerHTML += `
       <tr id="row-q-${respToJson.survey.id}">
           <th scope="row">
             ${respToJson.survey.id}
@@ -71,9 +72,9 @@ createEditSurveyForm.addEventListener("submit", async (e) => {
           </td>
        </tr>
   `;
-    } else {
-        const row = document.querySelector(`#row-q-${respToJson.survey.id}`);
-        row.innerHTML = `
+  } else {
+    const row = document.querySelector(`#row-q-${respToJson.survey.id}`);
+    row.innerHTML = `
         <tr id="row-q-${respToJson.survey.id}">
             <th scope="row">
               ${respToJson.survey.id}
@@ -91,5 +92,5 @@ createEditSurveyForm.addEventListener("submit", async (e) => {
             </td>
          </tr>
     `;
-    }
+  }
 });
