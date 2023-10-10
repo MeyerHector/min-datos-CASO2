@@ -7,6 +7,10 @@ export const Option = sequelize.define('Option', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    type: {
+        type: DataTypes.ENUM,
+        values: ['selectable', 'open_field']
+    },
     questionId: {
       type: DataTypes.INTEGER,
       allowNull: false
