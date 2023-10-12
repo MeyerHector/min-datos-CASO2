@@ -8,14 +8,14 @@ import { LevelStudy } from "./levelStudy.model.js";
 
 
 
-Survey.hasMany(Question);
+Survey.hasMany(Question, { onDelete: 'cascade', hooks: true });
 
 Question.belongsTo(Survey, {
   foreignKey: {
     name: "surveyId",
   },
 });
-Question.hasMany(Option);
+Question.hasMany(Option, { onDelete: 'cascade', hooks: true });
 Option.belongsTo(Question, {
   foreignKey: {
     name: "questionId",

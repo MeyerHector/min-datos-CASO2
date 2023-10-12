@@ -1,4 +1,4 @@
-import { showQuestion } from "../models/question.model.js";
+import { destroyQuestion, showQuestion, updateQuestion } from "../models/question.model.js";
 
 //VISTAS
 
@@ -18,12 +18,11 @@ export const edit = async (req, res) => {
     const { question } = req.body;
   
   try {
-    const updateQuestion = await showQuestion(questionId);
+    const updatedQuestion = await updateQuestion(questionId,{
+      question
+  })
 
-    updateQuestion.update({
-        question
-    });
-    return res.json({ question: updateQuestion, message: 'La pregunta se editó correctamente.' });
+    return res.json({ question: updatedQuestion, message: 'La pregunta se editó correctamente.' });
   } catch (error) {
     return res
       .status(error.status || 500)
@@ -32,5 +31,15 @@ export const edit = async (req, res) => {
 
 }
 export const destroy =  async (req, res) => {
+  const { questionId } = req.params;
 
+try {
+  const deletedQuestion = await destroyQuestion(questionId)
+
+  return res.json({ question: deletedQuestion, message: 'La pregunta se eliminó correctamente.' });
+} catch (error) {
+  return res
+    .status(error.status || 500)
+    .json(error.message || "Error interno del servidor");
+}
 }

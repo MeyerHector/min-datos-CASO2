@@ -28,6 +28,16 @@ export async function storeQuestion(question) {
   return await Question.create(question);
 }
 
+export async function updateQuestion(questionId, data) {
+  const question = await Question.findByPk(questionId)
+  return await question.update(data);
+}
+
 export async function showQuestion(questionId) {
   return (await Question.findByPk(questionId)) ?? null;
+}
+
+export async function destroyQuestion(questionId) {
+  const question = await Question.findByPk(questionId)
+  return await question.destroy();
 }
