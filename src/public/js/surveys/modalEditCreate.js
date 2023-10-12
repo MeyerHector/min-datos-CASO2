@@ -5,17 +5,19 @@ const myModal = new bootstrap.Modal(
 const titleForm = document.querySelector("#title");
 const descriptionForm = document.querySelector("#description");
 const createEditSurveyForm = document.querySelector("#createEditSurveyForm");
-let isCreating;
+const isCreating = document.querySelector("#isCreating");
 const createSurvey = async (event) => {
-  isCreating = 0;
   myModal.show();
 };
 
+let indexOfRow;
+
 const editSurvey = async (event) => {
-  const { id, title, description } = event.target.dataset;
+  const { id, title, description, index } = event.target.dataset;
   titleForm.value = title;
   descriptionForm.value = description;
-  isCreating = id;
+  isCreating.value = id;
+  indexOfRow = index;
   myModal.show();
 };
 
@@ -29,11 +31,11 @@ createEditSurveyForm.addEventListener("submit", async (e) => {
 
   let url, method;
 
-  if (!isCreating) {
+  if (!isCreating.value) {
     url = `http://localhost:8000/api/surveys`;
     method = "POST";
   } else {
-    url = `http://localhost:8000/api/surveys/${isCreating}/update`;
+    url = `http://localhost:8000/api/surveys/${isCreating.value}/update`;
     method = "PUT";
   }
 
@@ -51,7 +53,7 @@ createEditSurveyForm.addEventListener("submit", async (e) => {
   myModal.hide();
   createEditSurveyForm.reset();
 
-  if (!isCreating) {
+  if (!isCreating.value) {
     const empty = document.querySelector(`#row-q-empty`);
     console.log(empty);
     empty != null ? listSurveys.removeChild(empty) : "";
@@ -64,10 +66,17 @@ createEditSurveyForm.addEventListener("submit", async (e) => {
             ${respToJson.survey.title}
           </td>
           <td>
+          ${
+            respToJson.survey.status
+              ? `<button onclick=updateStatusSurvey(event) class="btn btn-outline-success" data-surveyId="${respToJson.survey.id}" data-status="${respToJson.survey.status}" data-index="${indexOfRow}">Activo</button>`
+              : `<button onclick=updateStatusSurvey(event) class="btn btn-outline-danger" data-surveyId="${respToJson.survey.id}" data-status="${respToJson.survey.status}" data-index="${indexOfRow}">Inactivo</button>`
+          }
+        </td>
+          <td>
             ${respToJson.survey.description}
           </td>
           <td>
-          <button onclick=editSurvey(event) class="btn btn-outline-success" data-id="${respToJson.survey.id}" data-title="${respToJson.survey.title}" data-description="${respToJson.survey.description}">Editar</button>
+          <button onclick=editSurvey(event) class="btn btn-outline-success" data-id="${respToJson.survey.id}" data-title="${respToJson.survey.title}" data-description="${respToJson.survey.description}" data-index="${indexOfRow}">Editar</button>
           <a href="/surveys/${respToJson.survey.id}/show" class="btn btn-outline-primary">Ver</a>        
           </td>
        </tr>
@@ -83,12 +92,18 @@ createEditSurveyForm.addEventListener("submit", async (e) => {
               ${respToJson.survey.title}
             </td>
             <td>
+            ${
+              respToJson.survey.status
+                ? `<button onclick=updateStatusSurvey(event) class="btn btn-outline-success" data-surveyId="${respToJson.survey.id}" data-status="${respToJson.survey.status}" data-index="${indexOfRow}">Activo</button>`
+                : `<button onclick=updateStatusSurvey(event) class="btn btn-outline-danger" data-surveyId="${respToJson.survey.id}" data-status="${respToJson.survey.status}" data-index="${indexOfRow}">Inactivo</button>`
+            }
+          </td>
+            <td>
               ${respToJson.survey.description}
             </td>
             <td>
-                <button onclick=editSurvey(event) class="btn btn-outline-success" data-id="${respToJson.survey.id}" data-title="${respToJson.survey.title}" data-description="${respToJson.survey.description}">Editar</button>
-                <a href="/surveys/${respToJson.survey.id}/show" class="btn btn-outline-primary">Ver</a>
-          
+                <button onclick=editSurvey(event) class="btn btn-outline-success" data-id="${respToJson.survey.id}" data-title="${respToJson.survey.title}" data-description="${respToJson.survey.description}" data-index="${indexOfRow}">Editar</button>
+                <a href="/surveys/${respToJson.survey.id}/show" class="btn btn-outline-primary">Ver</a>          
             </td>
          </tr>
     `;

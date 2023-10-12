@@ -10,6 +10,10 @@ export const Survey = sequelize.define('Survey', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    status: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    }
 }, {
     timestamps: true,
     underscored: true
@@ -31,4 +35,8 @@ export async function updateSurvey(surveyId, data) {
 
 export async function showSurvey(surveyId) {
     return await Survey.findByPk(surveyId) ?? null
+}
+
+export async function showSurveyByAnotherField(options) {
+    return await Survey.findOne(options) ?? null
 }

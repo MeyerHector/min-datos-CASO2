@@ -1,5 +1,11 @@
 import { indexQuestions, storeQuestion } from "../models/question.model.js";
-import { indexSurveys, showSurvey, storeSurvey, updateSurvey } from "../models/survey.model.js";
+import {
+  indexSurveys,
+  showSurvey,
+  showSurveyByAnotherField,
+  storeSurvey,
+  updateSurvey,
+} from "../models/survey.model.js";
 
 export const indexView = (req, res) => {
   res.render("surveys/index");
@@ -33,18 +39,15 @@ export const index = async (req, res) => {
 };
 
 export const showQuestions = async (req, res) => {
-  console.log(req.params)
+  console.log(req.params);
   const { surveyId } = req.params;
-
-  
 
   try {
     const question = await indexQuestions({
       where: {
-        surveyId
-      }
+        surveyId,
+      },
     });
-
 
     if (!question) {
       throw {
@@ -59,7 +62,6 @@ export const showQuestions = async (req, res) => {
       .status(error.status || 500)
       .json(error.message || "Error interno del servidor");
   }
-
 };
 
 export const storeQuestions = async (req, res) => {
@@ -67,7 +69,6 @@ export const storeQuestions = async (req, res) => {
 
   const surveyId = req.params.surveyId;
   const { question } = req.body;
-
 
   try {
     const newQuestion = await storeQuestion({
@@ -84,7 +85,10 @@ export const storeQuestions = async (req, res) => {
 
     return res
       .status(201)
-      .json({ question: newQuestion, message: "Pregunta creada correctamente." });
+      .json({
+        question: newQuestion,
+        message: "Pregunta creada correctamente.",
+      });
   } catch (error) {
     console.log(error);
     return res
@@ -94,7 +98,6 @@ export const storeQuestions = async (req, res) => {
 };
 
 export const store = async (req, res) => {
-
   const { title, description } = req.body;
 
   try {
@@ -121,19 +124,51 @@ export const store = async (req, res) => {
 };
 
 export const edit = async (req, res) => {
-  
   const { surveyId } = req.params;
   const { title, description } = req.body;
 
-try {
-  const updatedSurvey = await updateSurvey(surveyId, { title, description });
- 
-  return res.json({ survey: updatedSurvey, message: 'La encuesta se editó correctamente.' });
-} catch (error) {
-  return res
-    .status(error.status || 500)
-    .json(error.message || "Error interno del servidor");
-}
+  try {
+    const updatedSurvey = await updateSurvey(surveyId, { title, description });
+
+    return res.json({
+      survey: updatedSurvey,
+      message: "La encuesta se editó correctamente.",
+    });
+  } catch (error) {
+    return res
+      .status(error.status || 500)
+      .json(error.message || "Error interno del servidor");
+  }
+};
+
+export const editStatus = async (req, res) => {
+  const { surveyId } = req.params;
+  const { status } = req.body;
+
+
+  try {
+    const oldActiveSurvey = await showSurveyByAnotherField({
+      where: {
+        status: true,
+      },
+    });
+    if (oldActiveSurvey) {
+      oldActiveSurvey.status = false;
+      oldActiveSurvey.save();      
+    }
+
+    const newActiveSurvey = await updateSurvey(surveyId, { status : !status});
+
+    return res.json({
+      survey: newActiveSurvey,
+      message: "La encuesta se editó correctamente.",
+    });
+  } catch (error) {
+    console.log(error)
+    return res
+      .status(error.status || 500)
+      .json(error.message || "Error interno del servidor");
+  }
 };
 
 export const destroy = async (req, res) => {};
