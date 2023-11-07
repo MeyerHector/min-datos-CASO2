@@ -71,7 +71,7 @@ createEditOptionForm.addEventListener("submit", async (e) => {
         }" data-option="${respToJson.option.option}" data-questionId="${
       respToJson.option.questionId
     }">Editar</button>
-        <a href="/questions/${
+        <a href="/admin/questions/${
           respToJson.option.id
         }/show" class="btn btn-outline-primary">Ver</a>
       </td>
@@ -93,7 +93,7 @@ createEditOptionForm.addEventListener("submit", async (e) => {
       }" data-option="${respToJson.option.option}" data-questionId="${
       respToJson.option.questionId
     }">Editar</button>
-      <a href="/questions/${
+      <a href="/admin/questions/${
         respToJson.option.id
       }/show" class="btn btn-outline-primary">Ver</a>
     </td>

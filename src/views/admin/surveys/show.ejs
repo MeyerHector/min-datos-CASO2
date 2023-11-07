@@ -1,4 +1,4 @@
-<%- include('../partials/head.ejs') ;%>
+<%- include('../../partials/head.ejs') ;%>
     <div class="container-fluid py-5 px-md-5 col" id="id" data-id="<%= surveyId  %>">
         <h1><%= survey.title  %></h1>
         <button type="button" class="btn btn-outline-success my-2" onclick=createQuestion(event)>
@@ -9,6 +9,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Pregunta</th>
+                    <th scope="col">Opciones</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -50,4 +51,4 @@
 
     <script src="/js/surveys/showSurveyQuestions.js"></script>
     <script src="/js/questions/modalEditCreate.js"></script>
-    <%- include('../partials/footer.ejs') ;%>
+    <%- include('../../partials/footer.ejs') ;%>

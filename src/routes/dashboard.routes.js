@@ -1,10 +1,13 @@
 import { Router } from "express";
+import { createView } from "../controllers/survey.controllers.js";
 
 const router = Router();
 
 
-router.get('/', (req, res) => {
-    res.render('index')
+router.get('/', createView)
+
+router.get('/admin', (req, res) => {
+    res.render('admin/index')
 })
 
 

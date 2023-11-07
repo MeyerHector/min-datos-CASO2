@@ -5,7 +5,7 @@ import { destroy, edit, showView } from "../controllers/question.controller.js";
 const router = Router();
 
 //VISTAS
-router.get('/questions/:questionId/show', showView)
+router.get('/admin/questions/:questionId/show', showView)
 
 //api
 router.put('/api/questions/:questionId/update', edit);

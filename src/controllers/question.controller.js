@@ -5,7 +5,7 @@ import { destroyQuestion, showQuestion, updateQuestion } from "../models/questio
 export const showView = async (req, res) => {
   const questionId = req.params.questionId;
   const q = await showQuestion(questionId);
-  res.render("question/show", { questionId, question: q.question });
+  res.render("admin/question/show", { questionId, question: q.question });
 };
 
 

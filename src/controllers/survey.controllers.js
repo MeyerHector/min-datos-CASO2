@@ -7,8 +7,10 @@ import {
   updateSurvey,
 } from "../models/survey.model.js";
 
+import { Option } from "../models/option.model.js";
+
 export const indexView = (req, res) => {
-  res.render("surveys/index");
+  res.render("admin/surveys/index");
 };
 
 export const showView = async (req, res) => {
@@ -16,16 +18,16 @@ export const showView = async (req, res) => {
 
   const survey = await showSurvey(surveyId);
 
-  res.render("surveys/show", { surveyId, survey });
+  res.render("admin/surveys/show", { surveyId, survey });
 };
 
 export const createView = (_req, res) => {
-  res.render("surveys/create");
+  res.render("admin/surveys/create");
 };
 
 export const editView = (req, res) => {
   const surveyId = req.params.id;
-  res.render("surveys/edit", { id: surveyId });
+  res.render("admin/surveys/edit", { id: surveyId });
 };
 
 //APIS
@@ -47,6 +49,7 @@ export const showQuestions = async (req, res) => {
       where: {
         surveyId,
       },
+      include: Option
     });
 
     if (!question) {

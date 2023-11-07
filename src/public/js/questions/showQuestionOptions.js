@@ -45,7 +45,7 @@ const showOptions = (options) => {
                       </td>
                       <td>
                         <button onclick=editOption(event) class="btn btn-outline-success" data-id="${option.id}" data-option="${option.option}" data-questionId="${option.questionId}">Editar</button>
-                        <a href="/questions/${option.id}/show" class="btn btn-outline-primary">Ver</a>
+                        <a href="/admin/questions/${option.id}/show" class="btn btn-outline-primary">Ver</a>
                       </td>
                    </tr>
               `;

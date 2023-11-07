@@ -84,7 +84,7 @@ const addRow = (values, index) => {
             </td>
             <td>
                 <button onclick=editSurvey(event) class="btn btn-outline-success" data-id="${values.id}" data-title="${values.title}" data-description="${values.description}" data-index="${index}">Editar</button>
-                <a href="/surveys/${
+                <a href="/admin/surveys/${
                   values.id
                 }/show" class="btn btn-outline-primary">Ver</a>
           

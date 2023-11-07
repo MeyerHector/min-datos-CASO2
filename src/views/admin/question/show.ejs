@@ -1,4 +1,4 @@
-<%- include('../partials/head.ejs') ;%>
+<%- include('../../partials/head.ejs') ;%>
     <div class="container-fluid py-5 px-md-5 col" id="id" data-id="<%= questionId  %>">
         <h1><%= question  %></h1>
         <button type="button" class="btn btn-outline-success my-2" onclick=createOption(event)>
@@ -50,4 +50,4 @@
 
     <script src="/js/questions/showQuestionOptions.js"></script>
     <script src="/js/options/modalEditCreate.js"></script>
-    <%- include('../partials/footer.ejs') ;%>
+    <%- include('../../partials/footer.ejs') ;%>

@@ -14,7 +14,7 @@ export const sequelize = new Sequelize(
 
 export async function startDb () {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     console.log('La conexión a la base de datos fue exitosa.');
   } catch (error) {
     console.log("Ocurrió un error inesperado: ", error)

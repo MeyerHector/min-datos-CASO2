@@ -6,9 +6,9 @@ const router = Router();
 
 
 //vistas
-router.get('/surveys', indexView);
-router.get('/surveys/:surveyId/show', showView);
-router.get('/surveys/:surveyId/edit', editView);
+router.get('/admin/surveys', indexView);
+router.get('/admin/surveys/:surveyId/show', showView);
+router.get('/admin/surveys/:surveyId/edit', editView);
 
 
 //api

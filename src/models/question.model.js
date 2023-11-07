@@ -21,7 +21,7 @@ export const Question = sequelize.define(
 
 // servicio
 export async function indexQuestions(options) {
-  return (await Question.findAll( options )) ?? null;
+  return (await Question.findAll( options ))?? null;
 }
 
 export async function storeQuestion(question) {

@@ -66,7 +66,7 @@ createEditQuestionForm.addEventListener("submit", async (e) => {
         </td>
         <td>
             <button onclick=editQuestion(event) class="btn btn-outline-success" data-id="${respToJson.question.id}" data-question="${respToJson.question.question}" data-surveyId="${respToJson.question.surveyId}">Editar</button>
-            <a href="/questions/${respToJson.question.id}/show" class="btn btn-outline-primary">Ver</a>
+            <a href="/admin/questions/${respToJson.question.id}/show" class="btn btn-outline-primary">Ver</a>
 
         </td>
         </tr>
@@ -83,7 +83,7 @@ createEditQuestionForm.addEventListener("submit", async (e) => {
     </td>
     <td>
         <button onclick=editQuestion(event) class="btn btn-outline-success" data-id="${respToJson.question.id}" data-question="${respToJson.question.question}" data-surveyId="${respToJson.question.surveyId}">Editar</button>
-        <a href="/questions/${respToJson.question.id}/show" class="btn btn-outline-primary">Ver</a>
+        <a href="/admin/questions/${respToJson.question.id}/show" class="btn btn-outline-primary">Ver</a>
 
     </td>
     </tr>

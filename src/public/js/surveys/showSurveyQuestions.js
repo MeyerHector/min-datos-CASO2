@@ -1,4 +1,4 @@
-const listQuestions = document.querySelector('#listQuestions')
+const listQuestions = document.querySelector("#listQuestions");
 
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("DOMContentLoaded");
@@ -15,8 +15,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 const fetchQuestions = async () => {
   const surveyId = id.dataset.id;
 
-  const response = await fetch(`http://localhost:8000/api/surveys/${surveyId}/questions`);
-  console.log('response');
+  const response = await fetch(
+    `http://localhost:8000/api/surveys/${surveyId}/questions`
+  );
+  console.log("response");
   if (response.status !== 200) {
     return [];
   }
@@ -25,7 +27,7 @@ const fetchQuestions = async () => {
 };
 
 const showQuestions = (questions) => {
-  console.log(questions)
+  console.log(questions);
   if (questions.length === 0) {
     listQuestions.innerHTML = `
           <tr id="row-q-empty">
@@ -39,16 +41,27 @@ const showQuestions = (questions) => {
     listQuestions.innerHTML += `
                   <tr id="row-q-${question.id}">
                       <th scope="row">
-                        ${index + 1}
+                      ${index + 1}
                       </th>
                       <td>
                         ${question.question}
                       </td>
+                      <td >
+                      ${question.Options.length} (en total)
+                      </td>
                       <td>
-                        <button onclick=editQuestion(event) class="btn btn-outline-success" data-id="${question.id}" data-question="${question.question}" data-surveyId="${question.surveyId}">Editar</button>
-                        <a href="/questions/${question.id}/show" class="btn btn-outline-primary">Ver</a>
+                        <button onclick=editQuestion(event) class="btn btn-outline-success" data-id="${
+                          question.id
+                        }" data-question="${
+      question.question
+    }" data-surveyId="${question.surveyId}">Editar</button>
+                        <a href="/admin/questions/${
+                          question.id
+                        }/show" class="btn btn-outline-primary">Ver</a>
                       </td>
                    </tr>
               `;
+
+    
   });
 };

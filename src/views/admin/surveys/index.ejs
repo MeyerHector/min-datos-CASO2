@@ -1,4 +1,4 @@
-<%- include('../partials/head.ejs', {title : 'Listado de usuarios' }) ;%>
+<%- include('../../partials/head.ejs', {title : 'Listado de usuarios' }) ;%>
   <button type="button" class="btn btn-outline-success my-2" onclick=createSurvey(event)>
     Nueva Encuesta
   </button>
@@ -7,6 +7,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Título</th>
+        <th scope="col">Estado</th>
         <th scope="col">Descripción</th>
         <th scope="col">Acciones</th>
       </tr>
@@ -53,4 +54,4 @@
   <script src="/js/surveys/index.js"></script>
   <script src="/js/surveys/modalEditCreate.js"></script>
 
-  <%- include('../partials/footer.ejs', {title : 'Listado de usuarios' }) ;%>
+  <%- include('../../partials/footer.ejs', {title : 'Listado de usuarios' }) ;%>
