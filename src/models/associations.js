@@ -6,6 +6,7 @@ import { Gender } from "./gender.model.js";
 import { Locality } from "./locality.model.js";
 import { LevelStudy } from "./levelStudy.model.js";
 import { QuestionRespondent } from "./question.respondent.model.js";
+import { createDefaultValues } from "../utils/createDefaultValues.js";
 
 Survey.hasMany(Question, { onDelete: "cascade", hooks: true });
 
@@ -50,3 +51,6 @@ Respondent.belongsTo(LevelStudy, {
 
 Respondent.belongsToMany(Question, { through: QuestionRespondent });
 Question.belongsToMany(Respondent, { through: QuestionRespondent });
+
+
+await createDefaultValues()

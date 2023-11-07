@@ -2,7 +2,7 @@ import { sequelize } from '../config/database.js'
 import { DataTypes } from 'sequelize'
 
 
-export const GENDER = {
+export const GENDERS = {
     MASCULINO: 'masculino',
     FENEMINO: 'femenino',
     NO_BINARIO: 'nobinario',
@@ -15,7 +15,7 @@ export const Respondent = sequelize.define('Respondent', {
         allowNull: false
     },
     genderId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.ENUM([GENDERS.FENEMINO, GENDERS.MASCULINO, GENDERS.NO_BINARIO, GENDERS.OTRO]),
         allowNull: false
     },
     localityId: {

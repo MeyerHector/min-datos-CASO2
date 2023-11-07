@@ -174,4 +174,11 @@ export const editStatus = async (req, res) => {
   }
 };
 
+export const storeQuestionsOptions = async (req, res) => {
+
+ console.log(req.body)
+
+}
+
+
 export const destroy = async (req, res) => {};

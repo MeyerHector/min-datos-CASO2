@@ -1,130 +1,284 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulario de satisfaccion</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/form.css">
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/form.css" />
+  </head>
 
-<body>
+  <body>
     <main class="d-flex justify-content-center w-100 p-5">
-        <form class="w-50 p-3">
-            <h1 class="mb-3 text-center">Formulario de Registro de Preferencias Musicales</h1>
+      <form id="formComplete" class="w-50 p-3">
+        <h1 class="mb-3 text-center">
+          Formulario de Registro de Preferencias Musicales
+        </h1>
 
-            <h2 class="mb-2">Información Personal</h2>
-            <div class="mb-3 d-flex">
-                <div class="w-50">
-                    Edad <input type="text" name="age" class="form-control">
-                </div>
-                <div class="w-50 ms-3">
-                    Género <select name="gender" class="form-select">
-                        <option selected>Elige una opcion</option>
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                        <option value="nobinario">No binario</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-            </div>
-            <div class="mb-3">
-                Localidad <input type="text" name="localidad" class="form-control">
-            </div>
+        <h2 class="mb-2">Información Personal</h2>
+        <div class="mb-3 d-flex">
+          <div class="w-50">
+            Edad <input type="text" name="age" id="age" class="form-control" />
+          </div>
+          <div class="w-50 ms-3">
+            Género
+            <select name="gender" id="gender" class="form-select">
+              <option selected>Elige una opcion</option>
+              <option value="1">Femenino</option>
+              <option value="2">Masculino</option>
+              <option value="3">No binario</option>
+              <option value="4">Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3">
+          Localidad
+          <select id="localities" class="form-select"></select>
+        </div>
 
-            <h2 class="mb-2">Preferencias Musicales</h2>
-            <div class="mb-3">
-                Te gusta la música
-                <select name="gustaMusica" class="form-select">
-                    <option selected>Elige una opcion</option>
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
-                    <option value="indiferente">Me es indiferente, pero la escucho</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                ¿Consideras la música imprescindible en tu vida? 
-                <select name="imprescindibleMusica"
-                    class="form-select">
-                    <option selected>Elige una opcion</option>
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
-                    <option value="ocasiones">En Ocasiones</option>
-                    <option value="noImprescindible">No la considero imprescindible, pero a veces la escucho</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                Género musical favorito <input type="text" name="generoMusical" class="form-control">
-            </div>
-            <div class="mb-3">
-                Artista o grupo favorito <input type="text" name="artistaFavorito" class="form-control">
-            </div>
-            <div class="mb-3">
-                Canción favorita <input type="text" name="cancionFavorita" class="form-control">
-            </div>
-            <div class="mb-3">
-                ¿Le das importancia a la letra o a la melodía de la canción? <select name="importanciaCancion"
-                    class="form-select">
-                    <option selected>Elige una opcion</option>
-                    <option value="letra">Letra</option>
-                    <option value="melodia">Melodía</option>
-                    <option value="ambos">Ambos</option>
-                    <option value="depende">Depende de la canción</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                ¿Tus gustos musicales son cambiantes de acuerdo a los cambios emocionales internos? <select
-                    name="gustosCambiantes" class="form-select">
-                    <option selected>Elige una opcion</option>
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
-                    <option value="cambianNoEmociones">Si cambian, pero no se debe a mis emociones</option>
-                </select>
-            </div>
+        <h2 class="mb-2">Preferencias Musicales</h2>
+        <div class="mb-3">
+          Te gusta la música
+          <select name="gustaMusica" id="gustaMusica" class="form-select">
+            <option selected>Elige una opcion</option>
+            <option value="si">Si</option>
+            <option value="no">No</option>
+            <option value="indiferente">
+              Me es indiferente, pero la escucho
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          ¿Consideras la música imprescindible en tu vida?
+          <select
+            name="imprescindibleMusica"
+            id="imprescindibleMusica"
+            class="form-select"
+          >
+            <option selected>Elige una opcion</option>
+            <option value="si">Si</option>
+            <option value="no">No</option>
+            <option value="ocasiones">En Ocasiones</option>
+            <option value="noImprescindible">
+              No la considero imprescindible, pero a veces la escucho
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          Género musical favorito
+          <input
+            type="text"
+            name="generoMusical"
+            id="generoMusical"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          Artista o grupo favorito
+          <input
+            type="text"
+            name="artistaFavorito"
+            id="artistaFavorito"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          Canción favorita
+          <input
+            type="text"
+            name="cancionFavorita"
+            id="cancionFavorita"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          ¿Le das importancia a la letra o a la melodía de la canción?
+          <select
+            name="importanciaCancion"
+            id="importanciaCancion"
+            class="form-select"
+          >
+            <option selected>Elige una opcion</option>
+            <option value="letra">Letra</option>
+            <option value="melodia">Melodía</option>
+            <option value="ambos">Ambos</option>
+            <option value="depende">Depende de la canción</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          ¿Tus gustos musicales son cambiantes de acuerdo a los cambios
+          emocionales internos?
+          <select
+            name="gustosCambiantes"
+            id="gustosCambiantes"
+            class="form-select"
+          >
+            <option selected>Elige una opcion</option>
+            <option value="si">Si</option>
+            <option value="no">No</option>
+            <option value="cambianNoEmociones">
+              Si cambian, pero no se debe a mis emociones
+            </option>
+          </select>
+        </div>
 
-            <h2 class="mb-2">Momentos del Día</h2>
-            <div class="mb-3">
-                ¿Cuánto tiempo escuchas música durante el día? <select name="tiempoMusicaDia" class="form-select">
-                    <option selected>Elige una opcion</option>
-                    <option value="mas2horas">Más de 2 horas</option>
-                    <option value="1a2horas">Entre 1 y 2 horas</option>
-                    <option value="menos1hora">Menos de 1 hora</option>
-                    <option value="noEscucho">No escucho música, o muy pocos minutos</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                ¿Cuál es tu momento favorito para escuchar música? <select name="momentoFavorito" class="form-select">
-                    <option selected>Elige un momento</option>
-                    <option value="manana">Mañana</option>
-                    <option value="tarde">Tarde</option>
-                    <option value="noche">Noche</option>
-                    <option value="ninguno">Ninguno en especifico</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                ¿Qué tipo de música prefieres para cada momento? <input type="text" name="musicaMomento"
-                    class="form-control">
-            </div>
+        <h2 class="mb-2">Momentos del Día</h2>
+        <div class="mb-3">
+          ¿Cuánto tiempo escuchas música durante el día?
+          <select
+            name="tiempoMusicaDia"
+            id="tiempoMusicaDia"
+            class="form-select"
+          >
+            <option selected>Elige una opcion</option>
+            <option value="mas2horas">Más de 2 horas</option>
+            <option value="1a2horas">Entre 1 y 2 horas</option>
+            <option value="menos1hora">Menos de 1 hora</option>
+            <option value="noEscucho">
+              No escucho música, o muy pocos minutos
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          ¿Cuál es tu momento favorito para escuchar música?
+          <select
+            name="momentoFavorito"
+            id="momentoFavorito"
+            class="form-select"
+          >
+            <option selected>Elige un momento</option>
+            <option value="manana">Mañana</option>
+            <option value="tarde">Tarde</option>
+            <option value="noche">Noche</option>
+            <option value="ninguno">Ninguno en especifico</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          ¿Qué tipo de música prefieres para cada momento?
+          <input
+            type="text"
+            name="musicaMomento"
+            id="musicaMomento"
+            class="form-control"
+          />
+        </div>
 
-            <h2 class="mb-2">Comentarios Adicionales</h2>
-            <div class="mb-3">
-                ¿Qué género de música no te gusta? <input type="text" name="generoNoGusta" class="form-control">
-            </div>
-            <div class="mb-3">
-                ¿Hay algo más que te gustaría compartir sobre tus preferencias musicales? <input type="text"
-                    name="comentariosAdicionales" class="form-control">
-            </div>
-            <div class="d-flex justify-content-end">
-                <input type="submit" value="Enviar" class="btn btn-primary mt-3">
-            </div>
-        </form>
+        <h2 class="mb-2">Comentarios Adicionales</h2>
+        <div class="mb-3">
+          ¿Qué género de música no te gusta?
+          <input
+            type="text"
+            name="generoNoGusta"
+            id="generoNoGusta"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          ¿Hay algo más que te gustaría compartir sobre tus preferencias
+          musicales?
+          <input
+            type="text"
+            name="comentariosAdicionales"
+            id="comentariosAdicionales"
+            class="form-control"
+          />
+        </div>
+        <div class="d-flex justify-content-end">
+          <input type="submit" value="Enviar" class="btn btn-primary mt-3" />
+        </div>
+      </form>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const localities = document.querySelector("#localities");
+      const formComplete = document.querySelector("#formComplete");
 
-</body>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const locs = await getLocalities();
+        await getQuestionOptions();
+        showSelectLocalities(locs);
+      });
 
+      formComplete.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const urlStore = "/api/surveys/store";
+
+        const formdata = new FormData(formComplete);
+
+        try {
+          const response = await fetch(urlStore, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formdata),
+            method: "POST",
+          });
+          if (!response.ok) {
+            console.log(response);
+            throw {
+              errors: "Error inesperado.",
+            };
+          }
+          const data = await response.json();
+          console.log(data);
+          return data;
+        } catch (error) {
+          console.log(error);
+        }
+      });
+
+      const getQuestionOptions = async () => {
+        const urlQuestionsOptions = "/api/surveys/1/questions";
+        try {
+          const response = await fetch(urlQuestionsOptions);
+          if (!response.ok) {
+            console.log(response);
+            throw {
+              errors: "Error inesperado.",
+            };
+          }
+          const data = await response.json();
+          console.log(data);
+          return data;
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      const getLocalities = async () => {
+        const urlLocalities = "/api/localities";
+        try {
+          const response = await fetch(urlLocalities);
+          if (!response.ok) {
+            console.log(response);
+            throw {
+              errors: "Error inesperado.",
+            };
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      const showSelectLocalities = (locs) => {
+        localities.innerHTML = "<option selected>Elige una opcion</option>";
+
+        locs.forEach((loc) => {
+          localities.innerHTML += `<option value="${loc.id}">${loc.name}</option>`;
+        });
+      };
+    </script>
+  </body>
 </html>

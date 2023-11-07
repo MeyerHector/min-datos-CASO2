@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { destroy, edit, editStatus, editView, index, indexView, showView, showQuestions, store, storeQuestions } from "../controllers/survey.controllers.js";
+import { destroy, edit, editStatus, editView, index, indexView, showView, showQuestions, store, storeQuestions, storeQuestionsOptions } from "../controllers/survey.controllers.js";
 
 
 const router = Router();
@@ -14,6 +14,7 @@ router.get('/admin/surveys/:surveyId/edit', editView);
 //api
 router.get('/api/surveys', index);
 router.post('/api/surveys', store);
+router.post('/api/surveys/store', storeQuestionsOptions);
 router.put('/api/surveys/:surveyId/update', edit);
 router.delete('/api/surveys/:surveyId/destroy', destroy);
 
