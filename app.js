@@ -13,6 +13,7 @@ import questionRoutes from "./src/routes/question.routes.js";
 import questionOptionRoutes from "./src/routes/question.option.routes.js";
 import dashboardRoutes from "./src/routes/dashboard.routes.js";
 import localityRoutes from "./src/routes/localities.routes.js";
+import respondentRoutes from "./src/routes/respondent.option.routes.js";
 
 import fileDirName from './src/utils/file-dir-name.js';
 const { __dirname } = fileDirName(import.meta);
@@ -41,6 +42,7 @@ app.use('/',surveyRoutes);
 app.use('/',questionRoutes);
 app.use('/',questionOptionRoutes);
 app.use('/',localityRoutes);
+app.use('/',respondentRoutes);
 
 
 app.use(function (req, res) {

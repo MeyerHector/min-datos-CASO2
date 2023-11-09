@@ -8,11 +8,11 @@ export const QuestionRespondent = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    questionId: {
+    QuestionId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    respondentId: {
+    RespondentId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

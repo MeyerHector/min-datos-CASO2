@@ -27,6 +27,16 @@
         <a href="/admin/surveys">Ver Encuestas</a>
       </main>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-      
+      <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+
+
+          const response = await fetch('/api/respondentOptions');
+          const data = await response.json()
+          console.log('/api/respondentOptions')
+          console.log(data)
+
+        })
+      </script>
 </body>
 </html>
