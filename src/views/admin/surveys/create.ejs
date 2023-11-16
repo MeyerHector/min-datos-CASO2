@@ -14,11 +14,13 @@
   </head>
 
   <body>
-    <main class="d-flex justify-content-center w-100 p-5">
-      <form id="formComplete" class="w-50 p-3">
+    <main class="mx-auto my-5 col-sm-8 col-md-7">
+
+      <form id="formComplete" class="p-3 w-100">
         <h1 class="mb-3 text-center">
           Formulario de Registro de Preferencias Musicales
         </h1>
+        <h6 class="text-danger" id="respondentsCount"></h6>
 
         <h2 class="mb-2">Información Personal</h2>
         <div class="mb-3 d-flex">
@@ -167,7 +169,12 @@
           />
         </div>
         <div class="d-flex justify-content-end">
-          <input type="submit" value="Enviar" class="btn btn-primary mt-3" />
+          <input
+            id="btnSubmit"
+            type="submit"
+            value="Enviar"
+            class="btn btn-primary mt-3"
+          />
         </div>
       </form>
     </main>
@@ -193,13 +200,20 @@
 
       const artistaFavoritoId = document.querySelector("#artistaFavoritoId");
       const cancionFavoritaId = document.querySelector("#cancionFavoritaId");
+      const btnSubmit = document.querySelector("#btnSubmit");
       const comentariosAdicionalesId = document.querySelector(
         "#comentariosAdicionalesId"
       );
+        const respCount = document.querySelector("#respondentsCount");
 
       document.addEventListener("DOMContentLoaded", async () => {
         const locs = await getLocalities();
         const data = await getQuestionOptions();
+
+        const respo = await respondentCount();
+
+        respCount.innerHTML = `Personas encuestadas: ${respo.respondentsCount}`
+
 
         selects(data[0].Options, gustaMusica);
         selects(data[1].Options, imprescindibleMusica);
@@ -207,11 +221,11 @@
         selects(data[2].Options, generoNoGusta);
         selects(data[5].Options, importanciaCancion);
         selects(data[6].Options, gustosCambiantes);
-        selects(data[10].Options, tiempoMusicaDia);
-        selects(data[9].Options, momentoFavorito);
+        selects(data[7].Options, tiempoMusicaDia);
+        selects(data[8].Options, momentoFavorito);
         artistaFavoritoId.value = data[3].id;
         cancionFavoritaId.value = data[4].id;
-        comentariosAdicionalesId.value = data[8].id;
+        comentariosAdicionalesId.value = data[10].id;
 
         console.log(data);
 
@@ -220,6 +234,8 @@
 
       formComplete.addEventListener("submit", async (e) => {
         e.preventDefault();
+
+        btnSubmit.disabled = true;
 
         const urlStore = "/api/surveys/store";
 
@@ -269,13 +285,34 @@
           }
           const data = await response.json();
           if (data.status === 201) {
+            btnSubmit.disabled = false;
+
             alert("Encuesta registrada correctamente, ¡MUCHAS GRACIAS!");
             window.location.reload();
           }
         } catch (error) {
+          btnSubmit.disabled = false;
           console.log(error);
         }
       });
+
+      const respondentCount = async () => {
+        const urlRespondentCount = "/api/respondentCount";
+
+        try {
+          const response = await fetch(urlRespondentCount);
+          if (!response.ok) {
+            console.log(response);
+            throw {
+              errors: "Error inesperado.",
+            };
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
       const getQuestionOptions = async () => {
         const urlQuestionsOptions = "/api/surveys/1/questions";

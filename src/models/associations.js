@@ -52,5 +52,3 @@ Respondent.belongsTo(LevelStudy, {
 Respondent.belongsToMany(Question, { through: QuestionRespondent });
 Question.belongsToMany(Respondent, { through: QuestionRespondent });
 
-
-await createDefaultValues()

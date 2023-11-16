@@ -13,7 +13,9 @@ export const Locality = sequelize.define('Locality', {
 
 // servicios
 export async function index() {
-    return await Locality.findAll() ?? null
+    return await Locality.findAll({
+        order: [['name', 'ASC'],]
+    }) ?? null
 }
 
 export async function store(locality) {

@@ -10,13 +10,12 @@ export const sequelize = new Sequelize(
     host: environments.DB.DB_HOST,
     port: environments.DB.DB_PORT
   }
-  )
-  
-export async function startDb () {
-  try {
-    await sequelize.sync({ force: false });
-    console.log('La conexión a la base de datos fue exitosa.');    
+)
 
+export async function startDb() {
+  try {
+    await sequelize.sync({ force: true });
+    console.log('La conexión a la base de datos fue exitosa.');
   } catch (error) {
     console.log("Ocurrió un error inesperado: ", error)
   }

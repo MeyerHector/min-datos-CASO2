@@ -7,6 +7,7 @@ import path from 'path';
 import { environments } from "./src/config/environments.js";
 import { startDb } from "./src/config/database.js";
 import './src/models/associations.js';
+import { createDefaultValues } from "./src/utils/createDefaultValues.js";
 
 import surveyRoutes from "./src/routes/surveys.routes.js";
 import questionRoutes from "./src/routes/question.routes.js";
@@ -53,6 +54,7 @@ app.use(function (req, res) {
 app.listen(environments.APP_PORT, () => {
     console.log(`Servidor en ${environments.APP_URL}:${environments.APP_PORT}`);
     startDb();
+    // createDefaultValues();
 });
 
 

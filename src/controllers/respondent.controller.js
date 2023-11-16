@@ -5,6 +5,18 @@ import { Option } from "../models/option.model.js";
 import { Question } from "../models/question.model.js";
 import { Respondent } from "../models/respondent.model.js";
 
+export const respondentCount = async (_req, res) => {
+    try {
+        const respondentsCount = await Respondent.count()
+
+        res.json({
+            status: 200,
+            respondentsCount
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export const respondentAnswers = async (req, res) => {
     try {
@@ -50,10 +62,9 @@ export const respondentAnswers = async (req, res) => {
 
         res.json({
             status: 200,
-            respondents,
-            r
+            respondents: r
         })
     } catch (error) {
-        
+        console.log(error)
     }
 }

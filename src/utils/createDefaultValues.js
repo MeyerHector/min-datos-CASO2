@@ -501,7 +501,6 @@ const genders = [
 
 export const createDefaultValues = async () => {
   const genderCount = await Gender.count();
-
   if (genderCount == 0) {
     const survey = await Survey.findOrCreate({
       where: { title: "Gustos Musicales" },
